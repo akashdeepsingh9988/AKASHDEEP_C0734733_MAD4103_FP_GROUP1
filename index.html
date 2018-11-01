@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <title>Hello World</title>
+    </head>
+    <body>
+
+        <div data-role="header">
+        <h1> SuperHero Rescue Agency </h1><br>
+        </div>
+
+
+        <input type="text" id="nameBox" placeholder="Enter the name"> <br><br>
+        <input type="text" id="availableBox" placeholder="Availability"> <br><br>
+        Enter 1 if available and 0 if not available.<br><br><br>
+
+        <button class="ui-btn ui-btn-inline" id= "insertButton"> INSERT HEROES </button>
+        <button class="ui-btn ui-btn-inline" id= "showButton"> SHOW HEROES </button>
+        <button class="ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all" id= "rescueButton"> RESCUE ME! </button><br><br>
+
+
+
+
+
+
+        <div id="resultsSection">
+
+        </div>
+
+        <div data-role="footer">
+             <h2>Here is a footer!</h2>
+        </div>
+
+
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
