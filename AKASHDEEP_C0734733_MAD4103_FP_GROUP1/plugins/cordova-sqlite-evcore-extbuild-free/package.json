@@ -1,0 +1,66 @@
+{
+  "_from": "cordova-sqlite-evcore-extbuild-free",
+  "_id": "cordova-sqlite-evcore-extbuild-free@0.9.9-rc1",
+  "_inBundle": false,
+  "_integrity": "sha512-3k2ehbTqBYkfYD8IzjUW4N/C/nnUUncY1VxckPqB/yAh545mps4Aa6TXMAT9pGSKRpAXGxNt3+kgYol+mLkSsA==",
+  "_location": "/cordova-sqlite-evcore-extbuild-free",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-sqlite-evcore-extbuild-free",
+    "name": "cordova-sqlite-evcore-extbuild-free",
+    "escapedName": "cordova-sqlite-evcore-extbuild-free",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-sqlite-evcore-extbuild-free/-/cordova-sqlite-evcore-extbuild-free-0.9.9-rc1.tgz",
+  "_shasum": "2bb799dbbec15f0320fccad70da113b7162fdf04",
+  "_spec": "cordova-sqlite-evcore-extbuild-free",
+  "_where": "D:\\cordova\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1",
+  "author": {
+    "name": "various"
+  },
+  "bugs": {
+    "url": "https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-sqlite-evcore-extbuild-free",
+    "platforms": [
+      "android",
+      "ios",
+      "osx",
+      "windows"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova/PhoneGap sqlite storage - free enterprise version with Android performance/memory improvements and extra features for PhoneGap Build",
+  "devDependencies": {
+    "shelljs": "^0.7.4"
+  },
+  "homepage": "https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free",
+  "keywords": [
+    "sqlite",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-osx",
+    "cordova-windows"
+  ],
+  "license": "GPL-3.0 OR Commercial",
+  "name": "cordova-sqlite-evcore-extbuild-free",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free.git"
+  },
+  "scripts": {
+    "start": "node scripts/prepareSpec.js"
+  },
+  "version": "0.9.9-rc1"
+}
