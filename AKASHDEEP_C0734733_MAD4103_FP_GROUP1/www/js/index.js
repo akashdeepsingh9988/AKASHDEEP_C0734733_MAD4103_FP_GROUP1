@@ -13,9 +13,9 @@ function vibration() {
 function connectToDatabase() {
     console.log("device is ready - connecting to database");
     if (window.cordova.platformId === 'browser') {
-        db = window.openDatabase("superb", "1.0", "Database for super rescue agency app", 2 * 1024 * 1024);
+        db = window.openDatabase("dating", "1.0", "Database for dating app", 2 * 1024 * 1024);
     } else {
-        var databaseDetails = {"name": "superb.db", "location": "default"}
+        var databaseDetails = {"name": "dating.db", "location": "default"}
         db = window.sqlitePlugin.openDatabase(databaseDetails);
         console.log("done opening db");
     }
@@ -31,7 +31,7 @@ function connectToDatabase() {
 }
 
 function createTables(transaction) {
-    var sql = "CREATE TABLE IF NOT EXISTS heroes (id integer PRIMARY KEY AUTOINCREMENT, name text, isAvailable integer)";
+    var sql = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY AUTOINCREMENT, name text, isAvailable integer)";
     transaction.executeSql(sql, [], createSuccess, createFail)
 }
 
@@ -53,7 +53,7 @@ function saveButtonPressed(transaction) {
     
     db.transaction(function (transaction) {
         // save the values to the database
-        var sql = "INSERT INTO heroes (name, isAvailable) VALUES ('Spiderman',1), ('Thor',1), ('Captain America',0), ('Wonder Women',0)";
+        var sql = "INSERT INTO users (name, isAvailable) VALUES ('Spiderman',1), ('Thor',1), ('Captain America',0), ('Wonder Women',0)";
 
         var st  =  storage.getItem("inserted");
  
@@ -85,7 +85,7 @@ function showAllPressed() {
     document.getElementById("dbItems").innerHTML = "";
 
     db.transaction(function (transaction) {
-        transaction.executeSql("SELECT * FROM heroes", [],
+        transaction.executeSql("SELECT * FROM users", [],
                 function (tx, results) {
                     var numRows = results.rows.length;
 
@@ -106,6 +106,7 @@ function showAllPressed() {
                         }
 
                         // show it in the user interface
+                        alert(item.name);
                         document.getElementById("dbItems").innerHTML +=
                                 "<p>Name: " + item.name + "</p>"
                                 + "<p>Available  To Hire : " + av + "</p>"
