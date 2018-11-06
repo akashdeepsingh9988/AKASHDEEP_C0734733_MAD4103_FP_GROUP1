@@ -1,15 +1,26 @@
 var db = null;
+var userEmail = "";
+var userPassword = "";
 var storage = window.localStorage;
-
 // add event listeners
 document.addEventListener("deviceReady", connectToDatabase);
-document.getElementById("insert-hero").addEventListener("click", saveButtonPressed);
+document.addEventListener("deviceReady", saveButtonPressed);
+//document.getElementById("insert-hero").addEventListener("click", saveButtonPressed);
 document.getElementById("show-heros").addEventListener("click", showAllPressed);
 document.getElementById("rescue-me").addEventListener("click", vibration);
+document.getElementById("login-button").addEventListener("click", userLogin);
 
 function vibration() {
     navigator.vibrate(3000);
 }
+
+function userLogin()
+{
+   userEmail = document.getElementById("email").value;
+    userPassword = document.getElementById("password").value;
+    alert(userEmail+userPassword);
+}
+
 function connectToDatabase() {
     console.log("device is ready - connecting to database");
     if (window.cordova.platformId === 'browser') {
@@ -31,7 +42,8 @@ function connectToDatabase() {
 }
 
 function createTables(transaction) {
-    var sql = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY AUTOINCREMENT, name text, isAvailable integer)";
+    var sql = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY AUTOINCREMENT,name text, email text, password text, age text,\n\
+ gender text, location text, phone text)";
     transaction.executeSql(sql, [], createSuccess, createFail)
 }
 
@@ -43,40 +55,26 @@ function createFail(error) {
 }
 
 
-
-
 function saveButtonPressed(transaction) {
     console.log("save!!!");
-    var str  = storage.getItem("inserted");
-    if(str != "yes")
-        {    
-    
+
     db.transaction(function (transaction) {
         // save the values to the database
-        var sql = "INSERT INTO users (name, isAvailable) VALUES ('Spiderman',1), ('Thor',1), ('Captain America',0), ('Wonder Women',0)";
+        var sql = "INSERT INTO users (name, email,password, age,gender,location,phone) \n\
+VALUES ('Spiderman','user@example.com','password','20', 'Male','Toronto','1234567890'),('Thor','user@example.com','password', '20', 'Male','Toronto','1234567890'),('Superman','user@example.com','password','20', 'Male','Toronto','1234567890')";
 
-        var st  =  storage.getItem("inserted");
- 
         transaction.executeSql(sql, [], function (tx, result) {
             alert("Insert success");
             //showAllPressed()
-
-            var storage = window.localStorage;
-            storage.setItem("inserted", "yes"); // Pass a key name and its value to add or update that key.
-
         }, function (error) {
             alert("Insert failed: " + error);
         });
     }
-        
+
     );
 
-}
 
-else
-{
-    alert("data already inserted");
-}
+
 
 }
 
@@ -95,21 +93,12 @@ function showAllPressed() {
                         var item = results.rows.item(i);
                         console.log(item);
                         console.log(item.name);
-                        var av = "";
-                        if (item.isAvailable == 1)
-                        {
-                            av = "Yes";
-                        } else
-                        {
-                            av = "No";
 
-                        }
 
                         // show it in the user interface
-                        alert(item.name);
                         document.getElementById("dbItems").innerHTML +=
                                 "<p>Name: " + item.name + "</p>"
-                                + "<p>Available  To Hire : " + av + "</p>"
+                                + "<p>Email : " + item.email + "</p>"
                                 + "<p>=======================</p>";
                     }
 
