@@ -91,22 +91,33 @@ VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto',
         transaction.executeSql(sql, [], function (tx, result) {
             alert("Insert success");
 
-//============================= CREATE CONTACTS CODE=================================
+//============================= CREATE CONTACTS CODE =================================
             var myContact = navigator.contacts.create({"displayName": "The New Contact"});
             var name = new ContactName();
-            name.givenName = "Jane";
-            name.familyName = "Doe";
+
+            // CONTACT 1
+            name.givenName = "Akashdeep";
+            name.familyName = "Singh";
+            myContact.nickname = "Akashdeep Singh";
+            myContact.name = name;
+            var phoneNumbers = [];
+            phoneNumbers[1] = new ContactField('mobile', '365-778-0293', true); // preferred number
+            myContact.phoneNumbers = phoneNumbers;
+            myContact.save(onSuccessCallBack, onErrorCallBack);
+
+            // CONTACT 2
+            name.givenName = "Abhishek";
+            name.familyName = "Bansal";
+            myContact.nickname = "Abhishek Bansal";
+
             myContact.name = name;
 
             var phoneNumbers = [];
-            phoneNumbers[0] = new ContactField('work', '212-555-1234', false);
-            phoneNumbers[1] = new ContactField('mobile', '917-555-5432', true); // preferred number
-            phoneNumbers[2] = new ContactField('home', '203-555-7890', false);
+            phoneNumbers[1] = new ContactField('mobile', '905-781-9666', true); // preferred number
             myContact.phoneNumbers = phoneNumbers;
-
-            myContact.note = "Example note for the newly added contact";
-
             myContact.save(onSuccessCallBack, onErrorCallBack);
+
+
 
             function onSuccessCallBack(contact) {
                 alert("Save Success");
@@ -117,6 +128,8 @@ VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto',
                 alert("Error = " + contactError.code);
             }
             ;
+
+//============================= END CONTACTS CODE =================================
 
             //showAllPressed()
         }, function (error) {

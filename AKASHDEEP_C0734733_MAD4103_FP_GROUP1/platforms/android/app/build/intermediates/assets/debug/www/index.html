@@ -1,0 +1,131 @@
+<html>
+    <head>
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/ratchet.css">
+        <link rel="stylesheet" type="text/css" href="css/ratchet-theme-android.css">
+        <link rel="stylesheet" type="text/css" href="css/ratchet-theme-ios.css">
+
+
+
+
+
+        <title>Hello World</title>
+    </head>
+
+
+    <body>
+
+
+
+        <div data-role="page">
+
+            <div role="main" class="ui-content">
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+                <div id="dbItems">
+                </div>
+
+                <p>
+                    <button id ="insert-hero" class="ui-btn ui-btn-inline"> INSERT HEROES </button>
+                    <button id ="show-heros" class="ui-btn ui-btn-inline"> SHOW HEROES </button>
+
+
+
+                </p>
+            </div><!-- /content -->
+
+            <div data-role="footer">
+                <h4>Super Hero Rescue Agency</h4>
+            </div><!-- /footer -->
+
+        </div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+        <header class="bar bar-nav">
+
+
+            <button id ="rescue-me" class="btn pull-right"> RESCUE ME!</button>
+
+            <h1 class="title">Super hero rescue agency</h1>
+        </header>
+
+
+
+
+        <!-- ================================== SIGN UP FORM START ============================================================ -->
+        <div class="signup-form" id = "signup-form">
+            <input type="text" id ="username" placeholder="Name">
+            <input type="text" id ="semail" placeholder="Email Address ">
+            <input type="text" id ="spassword" placeholder="Password">
+            <input type="text" id ="scpassword" placeholder=" Confirm Password">
+            <input type="text" id ="sage" placeholder="Age">
+            <input type="text" id ="sgender" placeholder="Gender">
+            <input type="text" id ="sphone" placeholder="Phone Number"> 
+            <button class="btn btn-positive btn-block" id ="signup-button">Sign Up</button>
+
+        </div>
+        <!-- ================================== SIGNUP FORM END ============================================================ -->
+
+        <!-- ================================== LOGIN FORM START ============================================================ -->
+        <div class="login-form" id = "login-form">
+            <input type="email" required="true" id ="email" placeholder="Email Address">
+            <input type="password" id ="password" placeholder="Password"> 
+            <button class="btn btn-positive btn-block" id ="login-button">Login</button>
+
+        </div>
+        <!-- ================================== LOGIN FORM END ============================================================ -->
+
+
+
+
+
+
+
+        <!-- ================================== USERS CARDS START ============================================================ -->
+        <div class="signup-form" id = "signup-form">
+            <input type="text" id ="username" placeholder="Name">
+            <input type="text" id ="semail" placeholder="Email Address ">
+            <input type="text" id ="spassword" placeholder="Password">
+            <input type="text" id ="scpassword" placeholder=" Confirm Password">
+            <input type="text" id ="sage" placeholder="Age">
+            <input type="text" id ="sgender" placeholder="Gender">
+            <input type="text" id ="sphone" placeholder="Phone Number"> 
+            <button class="btn btn-positive btn-block" id ="login-button">Login</button>
+
+        </div>
+        <!-- ================================== USER CARDS END ============================================================ -->
+
+
+
+
+
+
+        <div data-role ="footer">
+            <h4>Page Footer</h4>
+        </div>
+
+    </body>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/ratchet.js"></script>
+</body>
+</html>
