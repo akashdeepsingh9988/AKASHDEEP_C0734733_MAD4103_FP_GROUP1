@@ -203,7 +203,11 @@ function saveButtonPressed(transaction) {
     db.transaction(function (transaction) {
         // save the values to the database
         var sql = "INSERT INTO users (name, email,password, age,gender,location,phone) \n\
-VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto','+13657780293'),('Abhishek','abbansal1995@gmail.com','password', '20', 'Male','Toronto','+19057819666')";
+VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto','+13657780293'),\n\
+('Abhishek','abbansal1995@gmail.com','password', '20', 'Male','Toronto','+19057819666'),\n\
+('John Mark','markjohn@gmail.com','password', '25', 'Male','Toronto','+19057878441'),\n\
+('Commilla','comilla@gmail.com','password', '28', 'Female','Brampton','+16057819220'),\n\
+('Emily John','emily_john@gmail.com','password', '22', 'Female','Brampton','+16057019767')";
 
         transaction.executeSql(sql, [], function (tx, result) {
             alert("Insert success");
@@ -287,98 +291,4 @@ function showAllPressed() {
                 }, function (error) {
         });
     });
-}
-
-document.getElementById("takePhotoButton").addEventListener("click",takePhoto);
-document.getElementById("pickPhotoButton").addEventListener("click",pickPhotoFromGallery);
-
-function doNothing() {
-
-}
-
-function takePhoto() {
-  console.log("take photo pressed");
-  alert("take photo pressed");
-
-  // 1. choose options for the camera
-  var cameraOptions = {
-    quality: 50,
-    destinationType: Camera.DestinationType.FILE_URI,
-    encodingType: Camera.EncodingType.JPEG,
-    mediaType: Camera.MediaType.PICTURE
-  };
-
- navigator.camera.getPicture(onSuccess, onFail, cameraOptions);
-}
-
-function onSuccess(filename) {
-  // DEBUG: Show the original file name
-  console.log("Image path: "  + filename);
-  alert("Image path: "  + filename);
-
-  // ---------
-  if (window.cordova.platformId == "android") {
-    // if you are using android, you need to do some extra steps
-    // to ensure you have the "real" image file path
-    // Note: you need to install this plugin: cordova-plugin-filepath
-    // for it to work properly
-    window.FilePath.resolveNativePath(filename, function(result) {
-      imageURI = result;
-      alert("Successfully converted image path: " + result);
-      console.log("Successfully converted image path: " + result);
-
-      localStorage.setItem("photo", result);
-
-      var image = document.getElementById("photoContainer");
-      image.src = result;
-
-    }, function (error) {
-      alert("error when converting file path!");
-    });
-  }
-  else {
-    // show image in UI
-    // show the image in the user interface
-    var imageBox = document.getElementById("photoContainer");
-    imageBox.src="data:image/jpeg;base64,"+filename;
-
-    // adding it to local storage
-    localStorage.setItem("photo","data:image/jpeg;base64,"+filename);
-    alert(filename);
-    
-    // DEBUG STATEMENT
-    alert(localStorage);
- }
- // -----------
-
-
-
-  console.log("done!");
-  alert("done");
-
-}
-
-function onFail(errorMessage) {
-  console.log("Error: " + errorMessage);
-  alert("Error: " + errorMessage);
-}
-
-
-function pickPhotoFromGallery() {
-  console.log("photo gallery pressed!");
-  alert("photo gallery pressed!");
-
-  // 1. choose options for the camera
-  var cameraOptions = {
-    quality: 50,
-    destinationType: Camera.DestinationType.FILE_URI,
-    encodingType: Camera.EncodingType.JPEG,
-    mediaType: Camera.MediaType.PICTURE,
-    sourceType : Camera.PictureSourceType.PHOTOLIBRARY
-  };
-
-  navigator.camera.getPicture(onSuccess, onFail, cameraOptions);
-
-
-
 }
