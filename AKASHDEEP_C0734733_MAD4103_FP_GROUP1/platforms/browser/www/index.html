@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="css/ratchet.css">
         <link rel="stylesheet" type="text/css" href="css/ratchet-theme-android.css">
         <link rel="stylesheet" type="text/css" href="css/ratchet-theme-ios.css">
+       
 
 
 
@@ -26,30 +27,21 @@
 
             <div role="main" class="ui-content">
 
-                <br>
-                <br>
-                <br>
-                <br>
+
 
 
                 <div id="dbItems">
                 </div>
 
-                <p>
-                    <button id ="insert-hero" class="ui-btn ui-btn-inline"> INSERT HEROES </button>
-                    <button id ="show-heros" class="ui-btn ui-btn-inline"> SHOW HEROES </button>
 
-
-
-                </p>
             </div><!-- /content -->
-
-            <div data-role="footer">
-                <h4>Super Hero Rescue Agency</h4>
-            </div><!-- /footer -->
 
         </div><!-- /page -->
 
+        <!-- ======================= CARD FOR USER PROFILE ====================================== -->
+        
+           
+        <!-- ======================= CARD FOR USER PROFILE END ====================================== -->
 
 
 
@@ -57,27 +49,19 @@
 
 
 
-
-
-        <header class="bar bar-nav">
-
-
-            <button id ="rescue-me" class="btn pull-right"> RESCUE ME!</button>
-
-            <h1 class="title">Super hero rescue agency</h1>
-        </header>
 
 
 
 
         <!-- ================================== SIGN UP FORM START ============================================================ -->
         <div class="signup-form" id = "signup-form">
-            <input type="text" id ="username" placeholder="Name">
+            <input type="text" id ="sname" placeholder="Name">
             <input type="text" id ="semail" placeholder="Email Address ">
             <input type="text" id ="spassword" placeholder="Password">
             <input type="text" id ="scpassword" placeholder=" Confirm Password">
             <input type="text" id ="sage" placeholder="Age">
             <input type="text" id ="sgender" placeholder="Gender">
+            <input type="text" id ="slocation" placeholder="Location">
             <input type="text" id ="sphone" placeholder="Phone Number"> 
             <button class="btn btn-positive btn-block" id ="signup-button">Sign Up</button>
 
@@ -100,24 +84,50 @@
 
 
         <!-- ================================== USERS CARDS START ============================================================ -->
-        <div class="signup-form" id = "signup-form">
-            <input type="text" id ="username" placeholder="Name">
-            <input type="text" id ="semail" placeholder="Email Address ">
-            <input type="text" id ="spassword" placeholder="Password">
-            <input type="text" id ="scpassword" placeholder=" Confirm Password">
-            <input type="text" id ="sage" placeholder="Age">
-            <input type="text" id ="sgender" placeholder="Gender">
-            <input type="text" id ="sphone" placeholder="Phone Number"> 
-            <button class="btn btn-positive btn-block" id ="login-button">Login</button>
 
-        </div>
         <!-- ================================== USER CARDS END ============================================================ -->
 
 
+        <nav class="bar bar-tab" id = "nav-bar">
+            <a class="tab-item active" href="#">
+                <span class="icon icon-home"></span>
+                <span class="tab-label">Home</span>
+            </a>
+            <a class="tab-item" href="#profile-card"  id = "profile-header">
+                <span class="icon icon-person"></span>
+                <span class="tab-label">Profile</span>
+            </a>
+            <a class="tab-item" href="#">
+                <span class="icon icon-star-filled"></span>
+                <span class="tab-label">Favorites</span>
+            </a>
+            <a class="tab-item" href="#">
+                <span class="icon icon-search"></span>
+                <span class="tab-label">Search</span>
+            </a>
+            <a class="tab-item" href="#">
+                <span class="icon icon-gear"></span>
+                <span class="tab-label">Settings</span>
+            </a>
+        </nav>
 
-
-
-
+<br>
+<br>
+<br>
+<br>
+ <div id = "profile-card" class="card">
+               
+     <img src = "" >
+     <h2 id = "pname"> </h2>
+     <h2 id = "pemail"> </h2>
+     <h2 id = "plocation"> </h2>
+     <h2 id = "pphone"> </h2>
+     <h2 id = "pgender"> </h2>
+     <h2 id = "ppage"> </h2>                
+                
+            </div>
+        
+        
         <div data-role ="footer">
             <h4>Page Footer</h4>
         </div>

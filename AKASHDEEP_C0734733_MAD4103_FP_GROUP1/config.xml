@@ -27,6 +27,8 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
+    <plugin name="cordova-plugin-navigationbar" spec="^1.0.31" />
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <engine name="android" spec="^7.1.1" />
     <engine name="ios" spec="^4.5.5" />
     <engine name="browser" spec="^5.0.4" />

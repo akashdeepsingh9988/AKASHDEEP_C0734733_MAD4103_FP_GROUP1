@@ -21,7 +21,9 @@
     },
     "cordova-plugin-contacts": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
-    }
+    },
+    "cordova-plugin-navigationbar": {},
+    "cordova-plugin-splashscreen": {}
   },
   "dependent_plugins": {}
 }

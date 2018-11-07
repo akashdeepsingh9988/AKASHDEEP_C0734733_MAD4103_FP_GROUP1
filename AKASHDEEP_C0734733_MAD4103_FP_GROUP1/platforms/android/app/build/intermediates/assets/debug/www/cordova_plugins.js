@@ -130,6 +130,22 @@ module.exports = [
     "merges": [
       ""
     ]
+  },
+  {
+    "id": "cordova-plugin-navigationbar.navigationbar",
+    "file": "plugins/cordova-plugin-navigationbar/www/navigationbar.js",
+    "pluginId": "cordova-plugin-navigationbar",
+    "clobbers": [
+      "window.navigationbar"
+    ]
+  },
+  {
+    "id": "cordova-plugin-splashscreen.SplashScreen",
+    "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+    "pluginId": "cordova-plugin-splashscreen",
+    "clobbers": [
+      "navigator.splashscreen"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -139,7 +155,9 @@ module.exports.metadata =
   "cordova-sqlite-evcore-extbuild-free": "0.9.9-rc1",
   "cordova-plugin-geolocation": "4.0.1",
   "cordova-plugin-camera": "4.0.3",
-  "cordova-plugin-contacts": "3.0.1"
+  "cordova-plugin-contacts": "3.0.1",
+  "cordova-plugin-navigationbar": "1.0.31",
+  "cordova-plugin-splashscreen": "5.0.2"
 };
 // BOTTOM OF METADATA
 });

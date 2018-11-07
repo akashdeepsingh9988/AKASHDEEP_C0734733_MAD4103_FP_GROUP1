@@ -27,6 +27,14 @@
             {
               "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"NavigationBar\"><param name=\"android-package\" value=\"com.cranberrygame.cordova.plugin.navigationbar.NavigationBar\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -87,6 +95,12 @@
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-contacts": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-navigationbar": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
@@ -222,6 +236,22 @@
       "merges": [
         ""
       ]
+    },
+    {
+      "id": "cordova-plugin-navigationbar.navigationbar",
+      "file": "plugins/cordova-plugin-navigationbar/www/navigationbar.js",
+      "pluginId": "cordova-plugin-navigationbar",
+      "clobbers": [
+        "window.navigationbar"
+      ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -229,6 +259,8 @@
     "cordova-sqlite-evcore-extbuild-free": "0.9.9-rc1",
     "cordova-plugin-geolocation": "4.0.1",
     "cordova-plugin-camera": "4.0.3",
-    "cordova-plugin-contacts": "3.0.1"
+    "cordova-plugin-contacts": "3.0.1",
+    "cordova-plugin-navigationbar": "1.0.31",
+    "cordova-plugin-splashscreen": "5.0.2"
   }
 }
