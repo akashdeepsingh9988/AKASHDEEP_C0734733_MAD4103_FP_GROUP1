@@ -30,6 +30,7 @@ function vibration() {
 }
 
 function profile() {
+    showAllPressed();
     document.getElementById("profile-card").style.display = "block";
 //    alert("block");
     //window.location.href = 'http://www.google.com';
@@ -197,9 +198,19 @@ function createFail(error) {
 
 
 
+
+
 function saveButtonPressed(transaction) {
     console.log("save!!!");
+var st =  localStorage.getItem("inserted");
 
+if(st == "true")
+{
+    
+}
+
+else
+{
     db.transaction(function (transaction) {
         // save the values to the database
         var sql = "INSERT INTO users (name, email,password, age,gender,location,phone) \n\
@@ -211,6 +222,8 @@ VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto',
 
         transaction.executeSql(sql, [], function (tx, result) {
             alert("Insert success");
+            
+            localStorage.setItem("inserted","true");
             //    showAllPressed();
 
 //============================= CREATE CONTACTS CODE =================================
@@ -260,7 +273,9 @@ VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto',
                 });
     }
 
+
     );
+}
 }
 
 function showAllPressed() {
@@ -268,7 +283,8 @@ function showAllPressed() {
     document.getElementById("dbItems").innerHTML = "";
 
     db.transaction(function (transaction) {
-        transaction.executeSql("SELECT * FROM users", [],
+            var userMail = storage.getItem("userEmail");
+        transaction.executeSql("SELECT * FROM users where email not in (?)", [userMail],
                 function (tx, results) {
                     var numRows = results.rows.length;
 
