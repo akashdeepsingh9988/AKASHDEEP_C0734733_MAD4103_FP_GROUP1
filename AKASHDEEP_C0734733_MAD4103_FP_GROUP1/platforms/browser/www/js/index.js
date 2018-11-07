@@ -55,7 +55,11 @@ function profile() {
                         document.getElementById("pphone").innerHTML = item.phone;
                         document.getElementById("plocation").innerHTML = item.location;
                         document.getElementById("pgender").innerHTML = item.gender;
-                        document.getElementById("page").innerHTML = item.age;
+                      //  document.getElementById("page").innerHTML = item.age;
+                        var imageBox = document.getElementById("photoContainer");
+                        var t = localStorage.getItem("photo");
+                       // alert(t);
+                        imageBox.src = localStorage.getItem("photo");
 
 //                        document.getElementById("dbItems").innerHTML +=
 //                                "<p>Name: " + item.name + "</p>"
@@ -285,7 +289,6 @@ function showAllPressed() {
     });
 }
 
-document.addEventListener("devcieready", doNothing);
 document.getElementById("takePhotoButton").addEventListener("click",takePhoto);
 document.getElementById("pickPhotoButton").addEventListener("click",pickPhotoFromGallery);
 
@@ -337,11 +340,12 @@ function onSuccess(filename) {
     // show image in UI
     // show the image in the user interface
     var imageBox = document.getElementById("photoContainer");
-    imageBox.src=filename;
+    imageBox.src="data:image/jpeg;base64,"+filename;
 
     // adding it to local storage
-    localStorage.setItem("photo", filename);
-
+    localStorage.setItem("photo","data:image/jpeg;base64,"+filename);
+    alert(filename);
+    
     // DEBUG STATEMENT
     alert(localStorage);
  }
