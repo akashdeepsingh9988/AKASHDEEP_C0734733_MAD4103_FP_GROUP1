@@ -155,7 +155,8 @@ module.exports.metadata =
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-contacts": "3.0.1",
     "cordova-plugin-navigationbar": "1.0.31",
-    "cordova-plugin-splashscreen": "5.0.2"
+    "cordova-plugin-splashscreen": "5.0.2",
+    "cordova-plugin-filepath": "1.4.2"
 }
 // BOTTOM OF METADATA
 });

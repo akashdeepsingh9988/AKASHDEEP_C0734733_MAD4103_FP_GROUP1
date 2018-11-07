@@ -23,7 +23,8 @@
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-navigationbar": {},
-    "cordova-plugin-splashscreen": {}
+    "cordova-plugin-splashscreen": {},
+    "cordova-plugin-filepath": {}
   },
   "dependent_plugins": {}
 }

@@ -12,9 +12,9 @@ var value = storage.getItem("login");
 
 if (value == "true")
 {
-        document.getElementById("profile-card").style.display = "block";
-    document.getElementById("signup-form").style.display = "none";
+    //document.getElementById("profile-card").style.display = "block";
     document.getElementById("login-form").style.display = "none";
+    document.getElementById("signup-form").style.display = "none";
 
 
 } else
@@ -36,7 +36,36 @@ function profile() {
     document.getElementById("signup-form").style.display = "none";
     //window.location = "login.html";
     document.getElementById("login-form").style.display = "none";
+    var userMail = storage.getItem("userEmail");
+    db.transaction(function (transaction) {
+        transaction.executeSql("SELECT * FROM users where email=?", [userMail],
+                function (tx, results) {
+                    var numRows = results.rows.length;
 
+                    for (var i = 0; i < numRows; i++) {
+
+                        // to get individual items:
+                        var item = results.rows.item(i);
+                        console.log(item);
+                        console.log(item.name);
+
+                        //alert(item.name + item.email + item.location + item.phone);
+                        document.getElementById("pname").innerHTML = item.name;
+                        document.getElementById("pemail").innerHTML = item.email;
+                        document.getElementById("pphone").innerHTML = item.phone;
+                        document.getElementById("plocation").innerHTML = item.location;
+                        document.getElementById("pgender").innerHTML = item.gender;
+                        document.getElementById("page").innerHTML = item.age;
+
+//                        document.getElementById("dbItems").innerHTML +=
+//                                "<p>Name: " + item.name + "</p>"
+//                                + "<p>Email : " + item.email + "</p>"
+//                                + "<p>=======================</p>";
+                    }
+
+                }, function (error) {
+        });
+    });
 
 }
 
@@ -58,6 +87,8 @@ function userLogin()
                         console.log(item);
                         console.log(item.name);
                         storage.setItem("login", "true");
+                        storage.setItem("userEmail", userEmail);
+
 //                        document.getElementById("dbItems").innerHTML +=
 //                                "<p>Name: " + item.name + "</p>"
 //                                + "<p>Email : " + item.email + "</p>"
@@ -93,26 +124,26 @@ VALUES (?,?,?,?,?,?,?)";
             //       alert("Insert success for new signup");
 
 //============================= CREATE CONTACTS CODE =================================
-            var myContact = navigator.contacts.create({"displayName": "The New Contact"});
-            var name = new ContactName();
-
-            // CONTACT 1
-            name.givenName = sname;
-            name.familyName = "";
-            myContact.nickname = sname;
-            myContact.name = name;
-            var phoneNumbers = [];
-            phoneNumbers[1] = new ContactField('mobile', sphone, true); // preferred number
-            myContact.phoneNumbers = phoneNumbers;
-            myContact.save(onSuccessCallBack, onErrorCallBack);
-            function onSuccessCallBack(contact) {
-                //         alert("Save Success new signup");
-            }
-            ;
-            function onErrorCallBack(contactError) {
-                //       alert("Error = " + contactError.code);
-            }
-            ;
+//            var myContact = navigator.contacts.create({"displayName": "The New Contact"});
+//            var name = new ContactName();
+//
+//            // CONTACT 1
+//            name.givenName = sname;
+//            name.familyName = "";
+//            myContact.nickname = sname;
+//            myContact.name = name;
+//            var phoneNumbers = [];
+//            phoneNumbers[1] = new ContactField('mobile', sphone, true); // preferred number
+//            myContact.phoneNumbers = phoneNumbers;
+//            myContact.save(onSuccessCallBack, onErrorCallBack);
+//            function onSuccessCallBack(contact) {
+//                //         alert("Save Success new signup");
+//            }
+//            ;
+//            function onErrorCallBack(contactError) {
+//                //       alert("Error = " + contactError.code);
+//            }
+//            ;
 
 //============================= END CONTACTS CODE =================================
 
@@ -125,7 +156,6 @@ VALUES (?,?,?,?,?,?,?)";
     );
 
 }
-
 
 
 function connectToDatabase() {
@@ -176,45 +206,45 @@ VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto',
             //    showAllPressed();
 
 //============================= CREATE CONTACTS CODE =================================
-            var myContact = navigator.contacts.create({"displayName": "The New Contact"});
-            var name = new ContactName();
-
-            // CONTACT 1
-            name.givenName = "Akashdeep";
-            name.familyName = "Singh";
-            myContact.nickname = "Akashdeep Singh";
-            myContact.name = name;
-            var phoneNumbers = [];
-            phoneNumbers[1] = new ContactField('mobile', '365-778-0293', true); // preferred number
-            myContact.phoneNumbers = phoneNumbers;
-            myContact.save(onSuccessCallBack, onErrorCallBack);
-
-            // CONTACT 2
-            name.givenName = "Abhishek";
-            name.familyName = "Bansal";
-            myContact.nickname = "Abhishek Bansal";
-
-            myContact.name = name;
-
-            var phoneNumbers = [];
-            phoneNumbers[1] = new ContactField('mobile', '905-781-9666', true); // preferred number
-            myContact.phoneNumbers = phoneNumbers;
-            myContact.save(onSuccessCallBack, onErrorCallBack);
-
-
-
-            function onSuccessCallBack(contact) {
-                alert("Save Success");
-            }
-            ;
-
-            function onErrorCallBack(contactError) {
-                alert("Error = " + contactError.code);
-            }
-            ;
+//          var myContact = navigator.contacts.create({"displayName": "The New Contact"});
+//            var name = new ContactName();
+//
+//            // CONTACT 1
+//            name.givenName = "Akashdeep";
+//            name.familyName = "Singh";
+//            myContact.nickname = "Akashdeep Singh";
+//            myContact.name = name;
+//            var phoneNumbers = [];
+//            phoneNumbers[1] = new ContactField('mobile', '365-778-0293', true); // preferred number
+//            myContact.phoneNumbers = phoneNumbers;
+//            myContact.save(onSuccessCallBack, onErrorCallBack);
+//
+//            // CONTACT 2
+//            name.givenName = "Abhishek";
+//            name.familyName = "Bansal";
+//            myContact.nickname = "Abhishek Bansal";
+//
+//            myContact.name = name;
+//
+//            var phoneNumbers = [];
+//            phoneNumbers[1] = new ContactField('mobile', '905-781-9666', true); // preferred number
+//            myContact.phoneNumbers = phoneNumbers;
+//            myContact.save(onSuccessCallBack, onErrorCallBack);
+//
+//
+//
+//            function onSuccessCallBack(contact) {
+//                alert("Save Success");
+//            }
+//            ;
+//
+//            function onErrorCallBack(contactError) {
+//                alert("Error = " + contactError.code);
+//            }
+//            ;
+//
 
 //============================= END CONTACTS CODE =================================
-
             //showAllPressed()
         },
                 function (error) {
@@ -223,10 +253,6 @@ VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto',
     }
 
     );
-
-
-
-
 }
 
 function showAllPressed() {
