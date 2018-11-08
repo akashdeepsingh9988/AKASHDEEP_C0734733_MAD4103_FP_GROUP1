@@ -8,6 +8,8 @@ document.addEventListener("deviceReady", saveButtonPressed);
 document.getElementById("login-button").addEventListener("click", userLogin);
 document.getElementById("signup-button").addEventListener("click", userSignUp);
 document.getElementById("profile-header").addEventListener("click", profile);
+document.getElementById("logout").addEventListener("click", logout);
+document.getElementById("searchButton").addEventListener("click", search);
 var value = storage.getItem("login");
 
 if (value == "true")
@@ -25,12 +27,23 @@ if (value == "true")
 }
 
 
+function logout() {
+    localStorage.removeItem("login");
+    localStorage.removeItem("userEmail");
+    alert("Logged Out");
+    document.getElementById("profile-card").style.display = "none";
+    document.getElementById("logout").style.display = "none";
+    document.getElementById("profile-header").style.display = "none";
+    document.getElementById("login-form").style.display = "block";
+
+
+}
 function vibration() {
     navigator.vibrate(3000);
 }
 
 function profile() {
-    showAllPressed();
+   // showAllPressed();
     document.getElementById("profile-card").style.display = "block";
 //    alert("block");
     //window.location.href = 'http://www.google.com';
@@ -56,10 +69,10 @@ function profile() {
                         document.getElementById("pphone").innerHTML = item.phone;
                         document.getElementById("plocation").innerHTML = item.location;
                         document.getElementById("pgender").innerHTML = item.gender;
-                      //  document.getElementById("page").innerHTML = item.age;
+                        //  document.getElementById("page").innerHTML = item.age;
                         var imageBox = document.getElementById("photoContainer");
                         var t = localStorage.getItem("photo");
-                       // alert(t);
+                        // alert(t);
                         imageBox.src = localStorage.getItem("photo");
 
 //                        document.getElementById("dbItems").innerHTML +=
@@ -93,6 +106,8 @@ function userLogin()
                         console.log(item.name);
                         storage.setItem("login", "true");
                         storage.setItem("userEmail", userEmail);
+                        document.getElementById("profile-card").style.display = "block";
+                        document.getElementById("login-form").style.display = "none";
 
 //                        document.getElementById("dbItems").innerHTML +=
 //                                "<p>Name: " + item.name + "</p>"
@@ -202,29 +217,27 @@ function createFail(error) {
 
 function saveButtonPressed(transaction) {
     console.log("save!!!");
-var st =  localStorage.getItem("inserted");
+    var st = localStorage.getItem("inserted");
 
-if(st == "true")
-{
-    
-}
+    if (st == "true")
+    {
 
-else
-{
-    db.transaction(function (transaction) {
-        // save the values to the database
-        var sql = "INSERT INTO users (name, email,password, age,gender,location,phone) \n\
+    } else
+    {
+        db.transaction(function (transaction) {
+            // save the values to the database
+            var sql = "INSERT INTO users (name, email,password, age,gender,location,phone) \n\
 VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto','+13657780293'),\n\
 ('Abhishek','abbansal1995@gmail.com','password', '20', 'Male','Toronto','+19057819666'),\n\
 ('John Mark','markjohn@gmail.com','password', '25', 'Male','Toronto','+19057878441'),\n\
 ('Commilla','comilla@gmail.com','password', '28', 'Female','Brampton','+16057819220'),\n\
 ('Emily John','emily_john@gmail.com','password', '22', 'Female','Brampton','+16057019767')";
 
-        transaction.executeSql(sql, [], function (tx, result) {
-            alert("Insert success");
-            
-            localStorage.setItem("inserted","true");
-            //    showAllPressed();
+            transaction.executeSql(sql, [], function (tx, result) {
+                alert("Insert success");
+
+                localStorage.setItem("inserted", "true");
+                //    showAllPressed();
 
 //============================= CREATE CONTACTS CODE =================================
 //          var myContact = navigator.contacts.create({"displayName": "The New Contact"});
@@ -266,16 +279,16 @@ VALUES ('Akashdeep','akashthind007@gmail.com','password','20', 'Male','Toronto',
 //
 
 //============================= END CONTACTS CODE =================================
-            //showAllPressed()
-        },
-                function (error) {
-                    //alert("Insert failed: " + error);
-                });
+                //showAllPressed()
+            },
+                    function (error) {
+                        //alert("Insert failed: " + error);
+                    });
+        }
+
+
+        );
     }
-
-
-    );
-}
 }
 
 function showAllPressed() {
@@ -283,7 +296,7 @@ function showAllPressed() {
     document.getElementById("dbItems").innerHTML = "";
 
     db.transaction(function (transaction) {
-            var userMail = storage.getItem("userEmail");
+        var userMail = storage.getItem("userEmail");
         transaction.executeSql("SELECT * FROM users where email not in (?)", [userMail],
                 function (tx, results) {
                     var numRows = results.rows.length;
@@ -308,3 +321,38 @@ function showAllPressed() {
         });
     });
 }
+
+
+function search()
+{
+    var searchKey = document.getElementById("searchBox").value;
+    alert(searchKey);
+
+    db.transaction(function (transaction) {
+        transaction.executeSql("SELECT * FROM users where name=?", [searchKey],
+                function (tx, results) {
+                    var numRows = results.rows.length;
+
+                    for (var i = 0; i < numRows; i++) {
+
+                        // to get individual items:
+                        var item = results.rows.item(i);
+                        console.log(item);
+                        console.log(item.name);
+                        
+                        alert(item.name);
+
+//                        document.getElementById("dbItems").innerHTML +=
+//                                "<p>Name: " + item.name + "</p>"
+//                                + "<p>Email : " + item.email + "</p>"
+//                                + "<p>=======================</p>";
+                    }
+
+                }, function (error) {
+        });
+    });
+}
+
+
+
+
