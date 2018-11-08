@@ -327,9 +327,15 @@ function search()
 {
     var searchKey = document.getElementById("searchBox").value;
     alert(searchKey);
+    var name  = "";
+    var email  = "";
+    var location  = "";
+    var age  = "";
+    var gender  = "";
+    
 
     db.transaction(function (transaction) {
-        transaction.executeSql("SELECT * FROM users where name=?", [searchKey],
+        transaction.executeSql("SELECT * FROM users where name=? or location = ?", [searchKey],
                 function (tx, results) {
                     var numRows = results.rows.length;
 
@@ -339,20 +345,23 @@ function search()
                         var item = results.rows.item(i);
                         console.log(item);
                         console.log(item.name);
-                        
-                        alert(item.name);
+                        name = item.name;
+                        email = item.email;
+                        location = item.location;
+                        age = item.age;
+                        gender = item.gender;
 
-//                        document.getElementById("dbItems").innerHTML +=
-//                                "<p>Name: " + item.name + "</p>"
-//                                + "<p>Email : " + item.email + "</p>"
-//                                + "<p>=======================</p>";
+
+
                     }
 
                 }, function (error) {
         });
     });
 }
+// https://stackoverflow.com/questions/44910126/loading-external-javascript-file
 
 
+// https://www.aspsnippets.com/Articles/Reverse-Geocoding-Get-address-from-Latitude-and-Longitude-using-Google-Maps-Geocoding-API.aspx
 
-
+//https://mindfiremobile.wordpress.com/2013/11/28/getting-address-from-latitudelongitude-value-using-google-api-and-phonegap/
