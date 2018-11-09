@@ -2,6 +2,14 @@ var db = null;
 var userEmail = "";
 var userPassword = "";
 var storage = window.localStorage;
+
+var script = document.createElement("script");
+script.type = "text/javascript";
+script.id = "some_id";
+script.src = 'http://maps.googleapis.com/maps/api/js?sensor=false';
+document.head.appendChild(script);
+
+
 // add event listeners
 document.addEventListener("deviceReady", connectToDatabase);
 document.addEventListener("deviceReady", saveButtonPressed);
@@ -11,6 +19,23 @@ document.getElementById("profile-header").addEventListener("click", profile);
 document.getElementById("logout").addEventListener("click", logout);
 document.getElementById("searchButton").addEventListener("click", search);
 var value = storage.getItem("login");
+
+
+   function GetAddress() {
+          //  var lat = parseFloat(document.getElementById("txtLatitude").value);
+            //var lng = parseFloat(document.getElementById("txtLongitude").value);
+            var latlng = new google.maps.LatLng(18.9300, 72.8200);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        alert("Location: " + results[1].formatted_address);
+                    }
+                }
+            });
+        }
+
+
 
 if (value == "true")
 {
@@ -43,7 +68,9 @@ function vibration() {
 }
 
 function profile() {
-   // showAllPressed();
+   // showAllPrecmd
+   // ssed();
+   GetAddress();
     document.getElementById("profile-card").style.display = "block";
 //    alert("block");
     //window.location.href = 'http://www.google.com';
@@ -327,9 +354,15 @@ function search()
 {
     var searchKey = document.getElementById("searchBox").value;
     alert(searchKey);
+    var name  = "";
+    var email  = "";
+    var location  = "";
+    var age  = "";
+    var gender  = "";
+    
 
     db.transaction(function (transaction) {
-        transaction.executeSql("SELECT * FROM users where name=?", [searchKey],
+        transaction.executeSql("SELECT * FROM users where name=? or location = ?", [searchKey],
                 function (tx, results) {
                     var numRows = results.rows.length;
 
@@ -339,20 +372,23 @@ function search()
                         var item = results.rows.item(i);
                         console.log(item);
                         console.log(item.name);
-                        
-                        alert(item.name);
+                        name = item.name;
+                        email = item.email;
+                        location = item.location;
+                        age = item.age;
+                        gender = item.gender;
 
-//                        document.getElementById("dbItems").innerHTML +=
-//                                "<p>Name: " + item.name + "</p>"
-//                                + "<p>Email : " + item.email + "</p>"
-//                                + "<p>=======================</p>";
+
+
                     }
 
                 }, function (error) {
         });
     });
 }
+// https://stackoverflow.com/questions/44910126/loading-external-javascript-file
 
 
+// https://www.aspsnippets.com/Articles/Reverse-Geocoding-Get-address-from-Latitude-and-Longitude-using-Google-Maps-Geocoding-API.aspx
 
-
+//https://mindfiremobile.wordpress.com/2013/11/28/getting-address-from-latitudelongitude-value-using-google-api-and-phonegap/

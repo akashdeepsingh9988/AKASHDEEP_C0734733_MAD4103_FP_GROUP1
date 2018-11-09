@@ -2,6 +2,9 @@ var db = null;
 var userEmail = "";
 var userPassword = "";
 var storage = window.localStorage;
+
+
+
 // add event listeners
 document.addEventListener("deviceReady", connectToDatabase);
 document.addEventListener("deviceReady", saveButtonPressed);
@@ -11,6 +14,23 @@ document.getElementById("profile-header").addEventListener("click", profile);
 document.getElementById("logout").addEventListener("click", logout);
 document.getElementById("searchButton").addEventListener("click", search);
 var value = storage.getItem("login");
+
+
+   function GetAddress() {
+          //  var lat = parseFloat(document.getElementById("txtLatitude").value);
+            //var lng = parseFloat(document.getElementById("txtLongitude").value);
+            var latlng = new google.maps.LatLng(18.9300, 72.8200);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        alert("Location: " + results[1].formatted_address);
+                    }
+                }
+            });
+        }
+
+
 
 if (value == "true")
 {
@@ -43,7 +63,9 @@ function vibration() {
 }
 
 function profile() {
-   // showAllPressed();
+   // showAllPrecmd
+   // ssed();
+   GetAddress();
     document.getElementById("profile-card").style.display = "block";
 //    alert("block");
     //window.location.href = 'http://www.google.com';
