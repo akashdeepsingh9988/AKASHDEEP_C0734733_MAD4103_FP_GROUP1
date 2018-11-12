@@ -3,11 +3,6 @@ var userEmail = "";
 var userPassword = "";
 var storage = window.localStorage;
 
-var script = document.createElement("script");
-script.type = "text/javascript";
-script.id = "some_id";
-script.src = 'http://maps.googleapis.com/maps/api/js?sensor=false';
-document.head.appendChild(script);
 
 
 // add event listeners
@@ -19,12 +14,12 @@ document.getElementById("profile-header").addEventListener("click", profile);
 document.getElementById("logout").addEventListener("click", logout);
 document.getElementById("searchButton").addEventListener("click", search);
 var value = storage.getItem("login");
+          //  var latlng = plugin.google.maps.LatLng();
 
-
-   function GetAddress() {
+ function GetAddress() {
           //  var lat = parseFloat(document.getElementById("txtLatitude").value);
-            //var lng = parseFloat(document.getElementById("txtLongitude").value);
-            var latlng = new google.maps.LatLng(18.9300, 72.8200);
+           // var lng = parseFloat(document.getElementById("txtLongitude").value);
+            var latlng = new google.maps.LatLng(18.92488028662047,72.8232192993164);
             var geocoder = geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'latLng': latlng }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -34,9 +29,8 @@ var value = storage.getItem("login");
                 }
             });
         }
-
-
-
+ 
+ 
 if (value == "true")
 {
     //document.getElementById("profile-card").style.display = "block";
@@ -70,7 +64,7 @@ function vibration() {
 function profile() {
    // showAllPrecmd
    // ssed();
-   GetAddress();
+   GetAddress(18.9300, 72.8200);
     document.getElementById("profile-card").style.display = "block";
 //    alert("block");
     //window.location.href = 'http://www.google.com';
@@ -353,7 +347,7 @@ function showAllPressed() {
 function search()
 {
     var searchKey = document.getElementById("searchBox").value;
-    alert(searchKey);
+    //alert(searchKey);
     var name  = "";
     var email  = "";
     var location  = "";
@@ -362,9 +356,10 @@ function search()
     
 
     db.transaction(function (transaction) {
-        transaction.executeSql("SELECT * FROM users where name=? or location = ?", [searchKey],
+        transaction.executeSql("SELECT * FROM users where name=? or location = ?", [searchKey, searchKey],
                 function (tx, results) {
                     var numRows = results.rows.length;
+                    alert(numRows);
 
                     for (var i = 0; i < numRows; i++) {
 
@@ -377,7 +372,7 @@ function search()
                         location = item.location;
                         age = item.age;
                         gender = item.gender;
-
+alert(name);
 
 
                     }

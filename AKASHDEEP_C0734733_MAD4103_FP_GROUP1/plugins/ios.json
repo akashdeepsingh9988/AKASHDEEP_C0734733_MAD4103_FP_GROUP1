@@ -24,7 +24,12 @@
     },
     "cordova-plugin-navigationbar": {},
     "cordova-plugin-splashscreen": {},
-    "cordova-plugin-filepath": {}
+    "cordova-plugin-filepath": {},
+    "cordova-plugin-googlemaps": {
+      "API_KEY_FOR_IOS": "AIzaSyDw7wInEaCS7ur5_JSXqpAvn0CcJkhXFrg",
+      "LOCATION_WHEN_IN_USE_DESCRIPTION": "This app wants to get your location while this app runs only.",
+      "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background."
+    }
   },
   "dependent_plugins": {}
 }
