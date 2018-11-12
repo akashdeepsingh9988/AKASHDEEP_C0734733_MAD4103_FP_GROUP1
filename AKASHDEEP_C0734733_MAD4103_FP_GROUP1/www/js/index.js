@@ -3,6 +3,8 @@ var userEmail = "";
 var userPassword = "";
 var storage = window.localStorage;
 
+var city = "";
+
 
 
 // add event listeners
@@ -24,7 +26,7 @@ var value = storage.getItem("login");
             geocoder.geocode({ 'latLng': latlng }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[1]) {
-                        alert("Location: " + results[1].formatted_address);
+                        alert("Location: " + results[1].address_components[5].long_name);
                     }
                 }
             });
