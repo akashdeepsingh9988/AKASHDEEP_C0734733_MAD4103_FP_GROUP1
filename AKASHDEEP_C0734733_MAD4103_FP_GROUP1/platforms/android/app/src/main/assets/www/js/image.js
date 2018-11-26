@@ -1,3 +1,5 @@
+document.addEventListener("devcieready", doNothing);
+
 
 document.getElementById("takePhotoButton").addEventListener("click",takePhoto);
 document.getElementById("pickPhotoButton").addEventListener("click",pickPhotoFromGallery);
@@ -48,6 +50,8 @@ function onSuccess(filename) {
   }
   else {
     // show image in UI
+        alert("HGH");
+
     // show the image in the user interface
     var imageBox = document.getElementById("photoContainer");
     imageBox.src="data:image/jpeg;base64,"+filename;
@@ -88,7 +92,5 @@ function pickPhotoFromGallery() {
   };
 
   navigator.camera.getPicture(onSuccess, onFail, cameraOptions);
-
-
 
 }

@@ -1,7 +1,7 @@
 <html>
     <head>
+    <link rel="stylesheet" type="text/css" href="mobileui/style.css">
 
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +9,8 @@
         <link rel="stylesheet" type="text/css" href="css/ratchet.css">
         <link rel="stylesheet" type="text/css" href="css/ratchet-theme-android.css">
         <link rel="stylesheet" type="text/css" href="css/ratchet-theme-ios.css">
+            <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
 
 
 
@@ -20,7 +22,6 @@
 
 
     <body>
-
 
 
         <div data-role="page">
@@ -77,6 +78,23 @@
         </div>
         <!-- ================================== LOGIN FORM END ============================================================ -->
 
+        
+              <!-- ================================== SEARCH FORM START ============================================================ -->
+
+        <div class="login-form" id = "search-form">
+            <input type="text" required="true" id ="searchBox" placeholder="Search for People">
+            <button class="btn btn-positive btn-block" id ="searchButton">Search</button>
+
+        </div>
+
+        <!-- ================================== SEARCH FORM END ============================================================ -->
+
+
+        <div id ="all-profiles" class = "all-profiles">
+
+            <h1> </h1>
+
+        </div>
 
 
         <!-- ================================== USERS CARDS START ============================================================ -->
@@ -103,47 +121,19 @@
             <button id="takePhotoButton"> Take Photo </button>
             <button id="pickPhotoButton"> Pick from Photo Gallery </button>
 
-            <h2> Your photo will go below </h2>
             <img id="photoContainer" style="border:1px solid red; max-width:100%">
 
         </div>
 
-        <!-- ================================== SEARCH FORM START ============================================================ -->
-
-        <div class="login-form" id = "search-form">
-            <input type="text" required="true" id ="searchBox" placeholder="Search for People">
-            <button class="btn btn-positive btn-block" id ="searchButton">Search</button>
-
-        </div>
-
-        <!-- ================================== SEARCH FORM END ============================================================ -->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-        <div id ="all-profiles" class = "all-profiles">
-
-            <h1> </h1>
-
-        </div>
+  
 
 
-        <div data-role ="footer">
-            <h4>Page Footer</h4>
-        </div>
+       
 
     </body>
 
     <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="mobileui/mobileui.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/ratchet.js"></script>
     <script type="text/javascript" src="js/image.js"></script>

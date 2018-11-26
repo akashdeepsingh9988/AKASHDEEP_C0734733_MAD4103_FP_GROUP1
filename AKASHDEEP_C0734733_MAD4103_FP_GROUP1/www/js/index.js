@@ -24,13 +24,13 @@ var value = storage.getItem("login");
 // =============================   GET CITY FROM CORDINATES ===============================================
  function GetAddress() {
            
-           alert(lat +'  '+ lag);
+       //    alert(lat +'  '+ lag);
             var latlng = new google.maps.LatLng(lat,lag);
             var geocoder = geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'latLng': latlng }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[1]) {
-                        alert("Location: " + results[1].address_components[3].long_name);
+         //               alert("Location: " + results[1].address_components[3].long_name);
                         userCity = results[1].address_components[3].long_name;
                         updateLocation();
                     }
@@ -42,8 +42,8 @@ var value = storage.getItem("login");
  // ===============================   GETTING USER LOCATION CORDINATES ====================================
         function onSuccess(position) {
         var element = document.getElementById('geolocation');
-        alert('Latitude: '  + position.coords.latitude      + ' '+
-                            'Longitude: ' + position.coords.longitude);
+        //alert('Latitude: '  + position.coords.latitude      + ' '+
+          //                  'Longitude: ' + position.coords.longitude);
                     
                lat = position.coords.latitude;
                lag = position.coords.longitude;
@@ -228,9 +228,6 @@ function createSuccess(tx, result) {
 function createFail(error) {
     //alert("Failure while creating table: " + error);
 }
-
-
-
 
 // ==========================   SAVE USERS TO DATABASE AT LAUNCH ===================================
 function saveButtonPressed(transaction) {
