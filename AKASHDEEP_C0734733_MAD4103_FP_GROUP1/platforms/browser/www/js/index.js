@@ -2,8 +2,11 @@ var db = null;
 var userEmail = "";
 var userPassword = "";
 var storage = window.localStorage;
-
+var lat = 0.0;
+var lag  = 0.0;
 var city = "";
+var userMail = "";
+var userCity = "";
 
 
 
@@ -21,16 +24,40 @@ var value = storage.getItem("login");
  function GetAddress() {
           //  var lat = parseFloat(document.getElementById("txtLatitude").value);
            // var lng = parseFloat(document.getElementById("txtLongitude").value);
-            var latlng = new google.maps.LatLng(18.92488028662047,72.8232192993164);
+           
+           alert(lat +'  '+ lag);
+            var latlng = new google.maps.LatLng(lat,lag);
             var geocoder = geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'latLng': latlng }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[1]) {
-                        alert("Location: " + results[1].address_components[5].long_name);
+                        alert("Location: " + results[1].address_components[3].long_name);
+                        userCity = results[1].address_components[3].long_name;
+                        updateLocation();
                     }
                 }
             });
         }
+        
+        
+        
+        function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        alert('Latitude: '  + position.coords.latitude      + ' '+
+                            'Longitude: ' + position.coords.longitude);
+                    
+               lat = position.coords.latitude;
+               lag = position.coords.longitude;
+    }
+    
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+    // Options: throw an error if no update is received every 30 seconds.
+    //
+    var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
  
  
 if (value == "true")
@@ -73,7 +100,7 @@ function profile() {
     document.getElementById("signup-form").style.display = "none";
     //window.location = "login.html";
     document.getElementById("login-form").style.display = "none";
-    var userMail = storage.getItem("userEmail");
+    userMail = storage.getItem("userEmail");
     db.transaction(function (transaction) {
         transaction.executeSql("SELECT * FROM users where email=?", [userMail],
                 function (tx, results) {
@@ -225,6 +252,13 @@ function createTables(transaction) {
     var sql = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY AUTOINCREMENT,name text, email text, password text, age text,\n\
  gender text, location text, phone text)";
     transaction.executeSql(sql, [], createSuccess, createFail)
+}
+
+function updateLocation() {
+    db.transaction(function (tx) {
+        tx.executeSql('UPDATE users SET location=? WHERE email=?', [userCity, userMail]);
+        alert(userCity,userMail);
+    });
 }
 
 function createSuccess(tx, result) {
