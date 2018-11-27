@@ -37,7 +37,9 @@ body {
         color-stop(0, #A7A7A7),
         color-stop(0.51, #E4E4E4)
     );
-    background-attachment:fixed;
+      overflow: scroll;
+  -webkit-overflow-scrolling:auto;
+    background-attachment: scroll;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
@@ -45,6 +47,14 @@ body {
     padding:0px;
     text-transform:uppercase;
     width:100%;
+}
+
+.div-m
+{
+    height: 2000px;
+          overflow: scroll;
+          -webkit-overflow-scrolling:auto;
+
 }
 
 /* Portrait layout (default) */

@@ -289,8 +289,9 @@ function showAllPressed() {
                         document.getElementById("dbItems").innerHTML +=
                                 "<p>Name: " + item.name + "</p>"
                                 + "<p>Email : " + item.email + "</p>"
+                                 + "<p><IMG SRC = 'img/logo.png'></p>"
                                 + "<p>=======================</p>";
-                        alert(item.name);
+                       // alert(item.name);
                     }
 
                 }, function (error) {
@@ -304,6 +305,7 @@ function showAllPressed() {
 
 function search()
 {
+     showAllPressed();
     var searchKey = document.getElementById("searchBox").value;
     //alert(searchKey);
     var name  = "";
