@@ -18,6 +18,7 @@ document.getElementById("signup-button").addEventListener("click", userSignUp);
 document.getElementById("profile-header").addEventListener("click", profile);
 document.getElementById("logout").addEventListener("click", logout);
 document.getElementById("searchButton").addEventListener("click", search);
+document.getElementById("btn-register-link").addEventListener("click",linkRegister);
 var value = storage.getItem("login");
 
 if(value == "true")
@@ -26,6 +27,14 @@ if(value == "true")
 
 }
 
+
+function linkRegister()
+{
+          document.getElementById("login-form").style.display = "none";
+
+      document.getElementById("signup-form").style.display = "block";
+
+}
 
 // =============================   GET CITY FROM CORDINATES ===============================================
 function GetAddress() {
@@ -158,7 +167,6 @@ function userLogin()
                         document.getElementById("login-form").style.display = "none";
                         document.getElementById("search-form").style.display = "block";
 
-                        
                     }
 
                 }, function (error) {
@@ -190,6 +198,9 @@ VALUES (?,?,?,?,?,?,?)";
 
         transaction.executeSql(sql, [sname, semail, spassword, sage, sgender, slocation, sphone], function (tx, result) {
             //       alert("Insert success for new signup");
+
+                      document.getElementById("signup-form").style.display = "none";
+      document.getElementById("login-form").style.display = "block";
 
 
             //showAllPressed()

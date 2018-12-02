@@ -18,14 +18,23 @@ document.getElementById("signup-button").addEventListener("click", userSignUp);
 document.getElementById("profile-header").addEventListener("click", profile);
 document.getElementById("logout").addEventListener("click", logout);
 document.getElementById("searchButton").addEventListener("click", search);
+document.getElementById("btn-register-link").addEventListener("click", linkRegister);
 var value = storage.getItem("login");
 
-if(value == "true")
+if (value == "true")
 {
-  document.getElementById("search-form").style.display = "block";
+    document.getElementById("search-form").style.display = "block";
 
 }
 
+
+function linkRegister()
+{
+    document.getElementById("login-form").style.display = "none";
+
+    document.getElementById("signup-form").style.display = "block";
+
+}
 
 // =============================   GET CITY FROM CORDINATES ===============================================
 function GetAddress() {
@@ -70,7 +79,7 @@ if (value == "true")
     //document.getElementById("profile-card").style.display = "block";
     document.getElementById("login-form").style.display = "none";
     document.getElementById("signup-form").style.display = "none";
-     document.getElementById("logout").style.display = "block";
+    document.getElementById("logout").style.display = "block";
     document.getElementById("profile-header").style.display = "block";
 
 } else
@@ -96,8 +105,8 @@ function logout() {
 
 function profile() {
     GetAddress(18.9300, 72.8200);
-     
-      document.getElementById("search-form").style.display = "block";
+
+    document.getElementById("search-form").style.display = "block";
     document.getElementById("profile-card").style.display = "block";
 //    alert("block");
     //window.location.href = 'http://www.google.com';
@@ -154,16 +163,17 @@ function userLogin()
                         console.log(item.name);
                         storage.setItem("login", "true");
                         storage.setItem("userEmail", userEmail);
-                      //  document.getElementById("profile-card").style.display = "block";
+                        //  document.getElementById("profile-card").style.display = "block";
                         document.getElementById("login-form").style.display = "none";
                         document.getElementById("search-form").style.display = "block";
+                        document.getElementById("logout").style.display = "block";
+                        document.getElementById("profile-header").style.display = "block";
 
-                        
                     }
 
                 }, function (error) {
-                    
-                    alert("Please enter valid login credentials");
+
+            alert("Please enter valid login credentials");
         });
     });
 }
@@ -190,6 +200,9 @@ VALUES (?,?,?,?,?,?,?)";
 
         transaction.executeSql(sql, [sname, semail, spassword, sage, sgender, slocation, sphone], function (tx, result) {
             //       alert("Insert success for new signup");
+
+            document.getElementById("signup-form").style.display = "none";
+            document.getElementById("login-form").style.display = "block";
 
 
             //showAllPressed()
