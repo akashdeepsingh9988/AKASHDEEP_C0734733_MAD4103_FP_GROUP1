@@ -3,7 +3,7 @@ var userEmail = "";
 var userPassword = "";
 var storage = window.localStorage;
 var lat = 0.0;
-var lag  = 0.0;
+var lag = 0.0;
 var city = "";
 var userMail = "";
 var userCity = "";
@@ -20,52 +20,60 @@ document.getElementById("logout").addEventListener("click", logout);
 document.getElementById("searchButton").addEventListener("click", search);
 var value = storage.getItem("login");
 
+if(value == "true")
+{
+  document.getElementById("search-form").style.display = "block";
+
+}
+
 
 // =============================   GET CITY FROM CORDINATES ===============================================
- function GetAddress() {
-           
-       //    alert(lat +'  '+ lag);
-            var latlng = new google.maps.LatLng(lat,lag);
-            var geocoder = geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-         //               alert("Location: " + results[1].address_components[3].long_name);
-                        userCity = results[1].address_components[3].long_name;
-                        updateLocation();
-                    }
-                }
-            });
-        }
-     //================== CITY CONVERSOION DONE    
-        
- // ===============================   GETTING USER LOCATION CORDINATES ====================================
-        function onSuccess(position) {
-        var element = document.getElementById('geolocation');
-        //alert('Latitude: '  + position.coords.latitude      + ' '+
-          //                  'Longitude: ' + position.coords.longitude);
-                    
-               lat = position.coords.latitude;
-               lag = position.coords.longitude;
-    }
-    
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
+function GetAddress() {
 
-    // Options: throw an error if no update is received every 30 seconds.
-    //
-    var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
- 
- //====   CORDINATES GETTING END
+    //    alert(lat +'  '+ lag);
+    var latlng = new google.maps.LatLng(lat, lag);
+    var geocoder = geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'latLng': latlng}, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+                //               alert("Location: " + results[1].address_components[3].long_name);
+                userCity = results[1].address_components[3].long_name;
+                updateLocation();
+            }
+        }
+    });
+}
+//================== CITY CONVERSOION DONE    
+
+// ===============================   GETTING USER LOCATION CORDINATES ====================================
+function onSuccess(position) {
+    var element = document.getElementById('geolocation');
+    //alert('Latitude: '  + position.coords.latitude      + ' '+
+    //                  'Longitude: ' + position.coords.longitude);
+
+    lat = position.coords.latitude;
+    lag = position.coords.longitude;
+}
+
+function onError(error) {
+    alert('code: ' + error.code + '\n' +
+            'message: ' + error.message + '\n');
+}
+
+// Options: throw an error if no update is received every 30 seconds.
+//
+var watchID = navigator.geolocation.watchPosition(onSuccess, onError, {timeout: 30000});
+
+//====   CORDINATES GETTING END
 if (value == "true")
 {
     //document.getElementById("profile-card").style.display = "block";
     document.getElementById("login-form").style.display = "none";
     document.getElementById("signup-form").style.display = "none";
+     document.getElementById("logout").style.display = "block";
+    document.getElementById("profile-header").style.display = "block";
 
-}  else
+} else
 {
     document.getElementById("nav-bar").style.display = "none";
 }
@@ -79,6 +87,7 @@ function logout() {
     document.getElementById("logout").style.display = "none";
     document.getElementById("profile-header").style.display = "none";
     document.getElementById("login-form").style.display = "block";
+    document.getElementById("search-form").style.display = "none";
 }
 
 // LOGOUT FUNCTION END
@@ -86,7 +95,9 @@ function logout() {
 // ====================================  SHOW USER PROFILE ===============================================
 
 function profile() {
-   GetAddress(18.9300, 72.8200);
+    GetAddress(18.9300, 72.8200);
+     
+      document.getElementById("search-form").style.display = "block";
     document.getElementById("profile-card").style.display = "block";
 //    alert("block");
     //window.location.href = 'http://www.google.com';
@@ -103,15 +114,16 @@ function profile() {
                         var item = results.rows.item(i);
                         console.log(item);
                         console.log(item.name);
+                        var imageBox = document.getElementById("photoContainer");
+                        var t = localStorage.getItem("photo");
+                        imageBox.src = localStorage.getItem("photo");
                         document.getElementById("pname").innerHTML = item.name;
                         document.getElementById("pemail").innerHTML = item.email;
                         document.getElementById("pphone").innerHTML = item.phone;
                         document.getElementById("plocation").innerHTML = item.location;
                         document.getElementById("pgender").innerHTML = item.gender;
                         //  document.getElementById("page").innerHTML = item.age;
-                        var imageBox = document.getElementById("photoContainer");
-                        var t = localStorage.getItem("photo");
-                        imageBox.src = localStorage.getItem("photo");
+
                     }
 
                 }, function (error) {
@@ -127,7 +139,7 @@ function userLogin()
 {
     userEmail = document.getElementById("email").value;
     userPassword = document.getElementById("password").value;
-    alert(userEmail + userPassword);
+    //alert(userEmail + userPassword);
 
     db.transaction(function (transaction) {
         transaction.executeSql("SELECT * FROM users where email=? and password=?", [userEmail, userPassword],
@@ -142,11 +154,16 @@ function userLogin()
                         console.log(item.name);
                         storage.setItem("login", "true");
                         storage.setItem("userEmail", userEmail);
-                        document.getElementById("profile-card").style.display = "block";
+                      //  document.getElementById("profile-card").style.display = "block";
                         document.getElementById("login-form").style.display = "none";
+                        document.getElementById("search-form").style.display = "block";
+
+                        
                     }
 
                 }, function (error) {
+                    
+                    alert("Please enter valid login credentials");
         });
     });
 }
@@ -218,7 +235,7 @@ function createTables(transaction) {
 function updateLocation() {
     db.transaction(function (tx) {
         tx.executeSql('UPDATE users SET location=? WHERE email=?', [userCity, userMail]);
-        alert(userCity,userMail);
+        alert(userCity, userMail);
     });
 }
 //============================================ UPDATE LOCATION END ===================================================
@@ -289,9 +306,9 @@ function showAllPressed() {
                         document.getElementById("dbItems").innerHTML +=
                                 "<p>Name: " + item.name + "</p>"
                                 + "<p>Email : " + item.email + "</p>"
-                                 + "<p><IMG SRC = 'img/logo.png'></p>"
+                                + "<p><IMG SRC = 'img/logo.png' class = 'profile-img'></p>"
                                 + "<p>=======================</p>";
-                       // alert(item.name);
+                        // alert(item.name);
                     }
 
                 }, function (error) {
@@ -305,15 +322,15 @@ function showAllPressed() {
 
 function search()
 {
-     showAllPressed();
+    showAllPressed();
     var searchKey = document.getElementById("searchBox").value;
     //alert(searchKey);
-    var name  = "";
-    var email  = "";
-    var location  = "";
-    var age  = "";
-    var gender  = "";
-    
+    var name = "";
+    var email = "";
+    var location = "";
+    var age = "";
+    var gender = "";
+
 
     db.transaction(function (transaction) {
         transaction.executeSql("SELECT * FROM users where name=? or location = ?", [searchKey, searchKey],
@@ -332,7 +349,7 @@ function search()
                         location = item.location;
                         age = item.age;
                         gender = item.gender;
-alert(name);
+                        alert(name);
 
 
                     }
@@ -420,4 +437,4 @@ alert(name);
 //
 
 //============================= END CONTACTS CODE =================================
-                //showAllPressed()
+//showAllPressed()
