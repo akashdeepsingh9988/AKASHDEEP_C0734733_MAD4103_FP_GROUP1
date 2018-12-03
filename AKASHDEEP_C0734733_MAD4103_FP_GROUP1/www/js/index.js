@@ -342,7 +342,7 @@ function search()
                                 document.getElementById("searches").innerHTML += "<li class='table-view-cell media'>"
                                 +"<a class='navigate-right'>"
                                 +"<img id ='search-img' class='media-object pull-left' src='img/user.png'><div class = 'media-body' id = 'search-name' >"+name
-                                +" <br>"+location+" <br>"+age+"</div> </a> </li>";
+                                +" <br>"+location+" <br>"+age+"</div> <button>Like</button> <button>Dislike</button> </a> </li>";
 
 
                         }
