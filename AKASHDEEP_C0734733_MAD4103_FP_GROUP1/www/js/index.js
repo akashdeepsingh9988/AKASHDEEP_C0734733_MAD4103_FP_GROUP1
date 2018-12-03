@@ -339,7 +339,11 @@ function search()
                                 gender = item.gender;
                                 //  alert(name);
 
-                            
+                                document.getElementById("searches").innerHTML += "<li class='table-view-cell media'>"
+                                +"<a class='navigate-right'>"
+                                +"<img id ='search-img' class='media-object pull-left' src='img/user.png'><div class = 'media-body' id = 'search-name' >"+name
+                                +" <br>"+location+" <br>"+age+"</div> </a> </li>";
+
 
                         }
 
