@@ -9,6 +9,14 @@ html {
     display: none;
 }
 
+#search-img
+{
+    width:100px;
+    height: 100px;
+    border-radius: 50px;
+}
+
+
 #profile-header
 {
     display: none;

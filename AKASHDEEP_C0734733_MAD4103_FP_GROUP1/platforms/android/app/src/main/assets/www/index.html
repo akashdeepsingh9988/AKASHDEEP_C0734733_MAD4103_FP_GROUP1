@@ -1,6 +1,5 @@
 <html>
     <head>
-    <link rel="stylesheet" type="text/css" href="mobileui/style.css">
 
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
@@ -23,8 +22,34 @@
 
     <body>
 
+        <div class="div-m">
+       <header class="bar bar-nav">
+  <h1 class="title">
+      
+      <button id ="profile-header" class="btn pull-left" > Profile </button>
+      Tynder
+  
+          <button id ="logout" class="btn pull-right" > Logout </button>
+</h1>
+  
+  
+</header>
+  
+           <div id = "search-results"
+            
+<ul class="table-view">
+  <li class="table-view-cell media">
+    <a class="navigate-right">
+      <img class="media-object pull-left" src="http://placehold.it/42x42">
+      <div class="media-body">
+        Item 1
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
+      </div>
+    </a>
+  </li>
+</ul>
+        </div>
 
-        <div data-role="page">
 
             <div role="main" class="ui-content">
 
@@ -74,6 +99,9 @@
             <input type="email" required="true" id ="email" placeholder="Email Address">
             <input type="password" id ="password" placeholder="Password"> 
             <button class="btn btn-positive btn-block" id ="login-button">Login</button>
+            <button class="btn btn-positive btn-block" id ="btn-register-link">Signup</button>
+            
+            
 
         </div>
         <!-- ================================== LOGIN FORM END ============================================================ -->
@@ -101,16 +129,15 @@
 
         <!-- ================================== USER CARDS END ============================================================ -->
 
-        <button id ="profile-header" > Profile </button>
-        <button id ="logout" > Logout </button>
+        
 
         <br>
         <br>
         <br>
         <br>
         <div id = "profile-card" class="card">
-
-            <img src = "" >
+            <br>
+            <img id="photoContainer" class = 'profile-img'>
             <h2 id = "pname"> </h2>
             <h2 id = "pemail"> </h2>
             <h2 id = "plocation"> </h2>
@@ -119,10 +146,10 @@
             <h2 id = "ppage"> </h2>  
 
             <button id="takePhotoButton"> Take Photo </button>
-            <button id="pickPhotoButton"> Pick from Photo Gallery </button>
+            <button id="pickPhotoButton"> Change Profile Image  </button>
 
-            <img id="photoContainer" style="border:1px solid red; max-width:100%">
 
+        </div>
         </div>
 
   
@@ -139,3 +166,8 @@
     <script type="text/javascript" src="js/image.js"></script>
 </body>
 </html>
+
+<br>
+<br>
+<br>
+<br>

@@ -1,14 +1,4 @@
-/*!
- * =====================================================
- * Ratchet v2.0.2 (http://goratchet.com)
- * Copyright 2014 Connor Sears
- * Licensed under MIT (https://github.com/twbs/ratchet/blob/master/LICENSE)
- *
- * v2.0.2 designed by @connors.
- * =====================================================
- */
 
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -16,6 +6,24 @@ html {
 }
 #search-form
 {
+    display: none;
+}
+
+#profile-header
+{
+    display: none;
+}
+
+#logout
+{
+    display: none;
+}
+
+.profile-img
+{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
 }
 
 .all-profiles
@@ -77,6 +85,10 @@ html {
 #profile-card
 {
     display: none;
+    margin: auto;
+    width: 50%;
+    height: 70%;
+    text-align: center;
 }
 
 #signup-form
@@ -85,7 +97,10 @@ html {
 }
 
 body {
-  margin: 0;
+  margin: auto;
+  -webkit-overflow-scrolling: auto;
+  height: 100%;
+      width: 100%;
 }
 
 .txtalign{
@@ -94,8 +109,8 @@ body {
 
 #dbItems
 {
-   
     margin: auto;
+    display: hidden;   
 }
 
 
@@ -315,7 +330,7 @@ th {
 }
 
 body {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -343,8 +358,8 @@ a:active {
   right: 0;
   bottom: 0;
   left: 0;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: scroll;
+  -webkit-overflow-scrolling: auto;
   background-color: #fff;
 }
 
