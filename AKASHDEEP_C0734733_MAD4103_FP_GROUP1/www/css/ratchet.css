@@ -9,6 +9,15 @@ html {
     display: none;
 }
 
+#pname
+{
+    width: 70%;
+}
+#plocation
+{
+    width: 70%;
+}
+
 #search-img
 {
     width:100px;

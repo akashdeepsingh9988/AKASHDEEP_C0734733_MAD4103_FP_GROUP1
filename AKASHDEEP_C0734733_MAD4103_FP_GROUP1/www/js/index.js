@@ -15,7 +15,9 @@ document.getElementById("signup-button").addEventListener("click", userSignUp);
 document.getElementById("profile-header").addEventListener("click", profile);
 document.getElementById("logout").addEventListener("click", logout);
 document.getElementById("searchButton").addEventListener("click", search);
+document.getElementById("search-btn1").addEventListener("click", searchform);
 document.getElementById("btn-register-link").addEventListener("click", linkRegister);
+document.getElementById("update-profile").addEventListener("click", updateProfile);
 // document.getElementById("like").addEventListener("click", like);
 var value = storage.getItem("login");
 if (value == "true")
@@ -23,11 +25,52 @@ if (value == "true")
     document.getElementById("search-form").style.display = "block";
 }
 
+function searchform()
+{
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("signup-form").style.display = "none";
+    document.getElementById("profile-card").style.display = "none";
+    document.getElementById("logout").style.display = "none";
+    // document.getElementById("profile-header").style.display = "none";
+    //document.getElementById("login-form").style.display = "block";
+    document.getElementById("search-form").style.display = "block";
+    document.getElementById("searches").style.display = "none";
+    document.getElementById("signup-form").style.display = "none";
+}
+
+function updateProfile()
+{
+    var pname = document.getElementById("pname").value;
+    var plocation = document.getElementById("plocation").value;
+    var userMail = storage.getItem("userEmail");
+//     db.transaction(function (tx) {
+//        tx.executeSql('UPDATE users SET name =? location=? WHERE email=?', [pname, plocation,userMail],
+//             function (tx, results) {
+//                    var numRows = results.rows.length;
+//                    }
+//
+//                }, function (error) {
+////        alert("Profile Updated"+userMail);
+//    });
+
+    db.transaction(function (transaction) {
+        transaction.executeSql('UPDATE users SET name =?,location=? WHERE email=?', [pname, plocation, userMail],
+                function (tx, results) {
+                    alert("Profile Updated");
+                }, function (error) {
+            alert(error);
+        });
+    });
+
+
+}
+// alert(pname+plocation);
 
 function linkRegister()
 {
     document.getElementById("login-form").style.display = "none";
     document.getElementById("signup-form").style.display = "block";
+
 }
 
 // =============================   GET CITY FROM CORDINATES ===============================================
@@ -45,6 +88,7 @@ function GetAddress() {
             }
         }
     });
+
 }
 //================== CITY CONVERSOION DONE    
 
@@ -103,6 +147,9 @@ function profile() {
     document.getElementById("search-form").style.display = "none";
     document.getElementById("searches").style.display = "none";
     document.getElementById("profile-card").style.display = "block";
+    document.getElementById("logout").style.display = "block";
+    document.getElementById("profile-header").style.display = "block";
+    document.getElementById("search-btn1").style.display = "block";
 //    alert("block");
     //window.location.href = 'http://www.google.com';
     document.getElementById("signup-form").style.display = "none";
@@ -120,10 +167,10 @@ function profile() {
                         var imageBox = document.getElementById("photoContainer");
                         var t = localStorage.getItem("photo");
                         imageBox.src = localStorage.getItem("photo");
-                        document.getElementById("pname").innerHTML = item.name;
+                        document.getElementById("pname").value = item.name;
                         document.getElementById("pemail").innerHTML = item.email;
                         document.getElementById("pphone").innerHTML = item.phone;
-                        document.getElementById("plocation").innerHTML = item.location;
+                        document.getElementById("plocation").value = item.location;
                         document.getElementById("pgender").innerHTML = item.gender;
                         //  document.getElementById("page").innerHTML = item.age;
 
@@ -227,8 +274,8 @@ function createTables(transaction) {
     var sql = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY AUTOINCREMENT,name text, email text, password text, age text,\n\
  gender text, location text, phone text)";
     transaction.executeSql(sql, [], createSuccess, createFail)
-    
-        var sql2 = "CREATE TABLE IF NOT EXISTS dislike (email text)";
+
+    var sql2 = "CREATE TABLE IF NOT EXISTS dislike (email text)";
     transaction.executeSql(sql2, [], createSuccess, createFail)
 }
 //============================================ CREATE TABLES END  ===================================================
@@ -339,7 +386,7 @@ function search()
 
     // document.getElementById("searches").innerHTML += "<ul class='table-view'>"
 
-     var userMail = storage.getItem("userEmail");
+    var userMail = storage.getItem("userEmail");
     db.transaction(function (transaction) {
         document.getElementById("searches").innerHTML = "";
         transaction.executeSql("SELECT * FROM users where name=? or location = ?", [searchKey, searchKey],
@@ -359,25 +406,23 @@ function search()
                         gender = item.gender;
                         phone = item.phone;
                         //  alert(name);
-                        
-                        if(email == userMail)
+
+                        if (email == userMail)
                         {
-                            
+
+                        } else
+                        {
+                            document.getElementById("searches").innerHTML += "";
+
+
+                            document.getElementById("searches").innerHTML += "<li class='table-view-cell media'>"
+                                    + "<a class='navigate-right'>"
+                                    + "<img id ='search-img' class='media-object pull-left' src='img/" + item.id + ".png'><div class = 'media-body' id = 'search-name' >" + name
+                                    + " <br>" + location + " <br>" + age + "</div> <button id = 'like-btn' onclick ='like(" + JSON.stringify(email).replace(/"/g, "&quot;") + "," + JSON.stringify(phone).replace(/"/g, "&quot;") + "," + JSON.stringify(name).replace(/"/g, "&quot;") + ")'>Like</button> <button onclick = 'dislike(" + JSON.stringify(email).replace(/"/g, "&quot;") + ")'>Dislike</button> </a> </li>";
+
+
                         }
-
-                          else
-                          {
-                        document.getElementById("searches").innerHTML += "";
-
-
-                        document.getElementById("searches").innerHTML += "<li class='table-view-cell media'>"
-                                + "<a class='navigate-right'>"
-                                + "<img id ='search-img' class='media-object pull-left' src='img/" + item.id + ".png'><div class = 'media-body' id = 'search-name' >" + name
-                                + " <br>" + location + " <br>" + age + "</div> <button id = 'like-btn' onclick ='like(" + JSON.stringify(email).replace(/"/g, "&quot;") + "," + JSON.stringify(phone).replace(/"/g, "&quot;") + "," + JSON.stringify(name).replace(/"/g, "&quot;") + ")'>Like</button> <button onclick = 'dislike(" + JSON.stringify(email).replace(/"/g, "&quot;") + ")'>Dislike</button> </a> </li>";
-
-
                     }
-                }
 
                 }, function (error) {
         });
@@ -422,11 +467,11 @@ function dislike(eemail)
 {
     db.transaction(function (transaction) {
 // save the values to the database
-alert("dislike");
+        alert("dislike");
         var sql = "INSERT INTO dislike (email) VALUES (?)";
         transaction.executeSql(sql, [eemail], function (tx, result) {
             alert("Disliked");
-          //  localStorage.setItem("inserted", "true");
+            //  localStorage.setItem("inserted", "true");
             //    showAllPressed();
 
         },

@@ -27,6 +27,7 @@
   <h1 class="title">
       
       <button id ="profile-header" class="btn pull-left" > Profile </button>
+      <button id ="search-btn1" class="btn pull-left" > Search </button>
       Tynder
   
           <button id ="logout" class="btn pull-right" > Logout </button>
@@ -78,8 +79,8 @@
         <div class="signup-form" id = "signup-form">
             <input type="text" id ="sname" placeholder="Name">
             <input type="text" id ="semail" placeholder="Email Address ">
-            <input type="text" id ="spassword" placeholder="Password">
-            <input type="text" id ="scpassword" placeholder=" Confirm Password">
+            <input type="password" id ="spassword" placeholder="Password">
+            <input type="password" id ="scpassword" placeholder=" Confirm Password">
             <input type="text" id ="sage" placeholder="Age">
             <input type="text" id ="sgender" placeholder="Gender">
             <input type="text" id ="slocation" placeholder="Location">
@@ -133,13 +134,18 @@
         <div id = "profile-card" class="card">
             <br>
             <img id="photoContainer" class = 'profile-img'>
-            <h2 id = "pname"> </h2>
+            <br>
+             <input type = "text"  id = "pname" value = ""> 
+                      <br>
+
+             <input type = "text" id = "plocation" value = ""> 
             <h2 id = "pemail"> </h2>
-            <h2 id = "plocation"> </h2>
+               
             <h2 id = "pphone"> </h2>
             <h2 id = "pgender"> </h2>
             <h2 id = "ppage"> </h2>  
 
+            <button id="update-profile"> Update Profile </button>
             <button id="takePhotoButton"> Take Photo </button>
             <button id="pickPhotoButton"> Change Profile Image  </button>
 
