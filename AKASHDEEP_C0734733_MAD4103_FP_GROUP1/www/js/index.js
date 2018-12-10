@@ -387,6 +387,36 @@ function search()
 
 
 
+function like(eemail, pphone, nname)
+{
+    console.log(eemail + pphone);
+    alert("like pressed" + eemail + pphone + nname);
+
+    // alert(t);
+
+    var myContact = navigator.contacts.create({"displayName": "The New Contact"});
+    var name = new ContactName();
+
+    // CONTACT 1
+    name.givenName = nname;
+    name.familyName = "";
+    myContact.nickname = nname;
+    myContact.name = name;
+    var phoneNumbers = [];
+    phoneNumbers[1] = new ContactField('mobile', pphone, true); // preferred number
+    myContact.phoneNumbers = phoneNumbers;
+    myContact.save(onSuccessCallBack, onErrorCallBack);
+    function onSuccessCallBack(contact) {
+        alert("Liked");
+    }
+    ;
+    function onErrorCallBack(contactError) {
+        alert("Error = " + contactError.code);
+    }
+    ;
+
+}
+
 
 function dislike(eemail)
 {
