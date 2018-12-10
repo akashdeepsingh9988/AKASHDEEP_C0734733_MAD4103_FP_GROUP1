@@ -30,11 +30,11 @@ function searchform()
     document.getElementById("login-form").style.display = "none";
     document.getElementById("signup-form").style.display = "none";
     document.getElementById("profile-card").style.display = "none";
-    document.getElementById("logout").style.display = "none";
+   // document.getElementById("logout").style.display = "none";
     // document.getElementById("profile-header").style.display = "none";
     //document.getElementById("login-form").style.display = "block";
     document.getElementById("search-form").style.display = "block";
-    document.getElementById("searches").style.display = "none";
+    //document.getElementById("searches").style.display = "";
     document.getElementById("signup-form").style.display = "none";
 }
 

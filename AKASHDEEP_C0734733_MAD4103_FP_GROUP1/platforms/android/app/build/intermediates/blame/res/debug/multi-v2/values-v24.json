@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\cordova\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "E:\\GitHub\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Akashdeep Singh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\c97753f8b250390fc77b6abe5266f5a1\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Akashdeep Singh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0.aar\\040d69ab6a91254cf8b9fec99fc863b1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Akashdeep Singh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\c5d10e3a0e13a51ba409ea20437c5505\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Akashdeep Singh\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.0.0.aar\\424b4bd74306c6adab38c0ad14e5e882\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\cordova\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-iw\\values-iw.xml",
+            "outputFile": "E:\\GitHub\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1\\AKASHDEEP_C0734733_MAD4103_FP_GROUP1\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-iw\\values-iw.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Akashdeep Singh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.4.0.aar\\c97753f8b250390fc77b6abe5266f5a1\\res\\values-iw\\values-iw.xml",
+                    "source": "C:\\Users\\Akashdeep Singh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0.aar\\040d69ab6a91254cf8b9fec99fc863b1\\res\\values-iw\\values-iw.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
